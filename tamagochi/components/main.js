@@ -19,7 +19,7 @@ export default class Main extends Component {
     }
   }
 
-  loop(){
+  loop(stop){
     var hungerRandom = Math.random() / 40
     var thirstRandom = Math.random() / 20
     if(this.state.hunger <= 0) {
@@ -34,9 +34,11 @@ export default class Main extends Component {
     }
     if(this.state.hunger <= 0 || this.state.thirst <= 0) {
       this.props.goToLose()
+      clearInterval(stop)
     }
     if(this.state.experience >= 1) {
       this.props.goToWin()
+      clearInterval(stop)
     }
     this.setState({
       hunger: this.state.hunger - (hungerRandom),
@@ -45,7 +47,7 @@ export default class Main extends Component {
   }
 
   componentDidMount(){
-    setInterval(() => this.loop(), 1000);
+    var stop = setInterval(() => this.loop(stop), 1000);
 
     // console.log(typeof this.props.goToLose());
     console.log(this.state.hunger);
