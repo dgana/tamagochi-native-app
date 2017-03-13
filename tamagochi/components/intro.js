@@ -43,10 +43,7 @@ export default class Intro extends Component {
               text: 'Input your pet name!',
               position: 'bottom',
               buttonText: 'Okay'
-            }) : Toast.show({
-              text: 'Thanks!',
-              position: 'bottom',
-              buttonText: 'Okay'})}>
+            }) : this.props.goToMain()}>
 
 
             <Icon size={20} color={"#384850"} name={'ios-refresh'} />
